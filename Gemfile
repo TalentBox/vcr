@@ -1,7 +1,7 @@
 source :rubygems
 gemspec
 
-gem 'excon', :git => 'git://github.com/geemus/excon.git', :ref => '80d7f92fef0405b7f846acba64b88fa7551d00e8'
+gem 'excon', :git => 'git://github.com/geemus/excon.git', :ref => '1bd9b8167a090335c82f3a3c5c84fb654822c467'
 
 group :development do
   # patron and em-http-request can't install on JRuby, so we have to limit their platform here.
