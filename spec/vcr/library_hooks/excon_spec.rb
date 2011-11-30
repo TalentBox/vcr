@@ -18,7 +18,7 @@ describe "Excon hook", :focus do
   end
 
   context "when the query is specified as a hash option" do
-    let(:excon) { ::Excon.new("http://127.0.0.1:#{VCR::SinatraApp.port}/search") }
+    let(:excon) { ::Excon.new("http://localhost:#{VCR::SinatraApp.port}/search") }
 
     it 'properly records and plays back the response' do
       VCR.stub(:real_http_connections_allowed? => true)
@@ -40,7 +40,7 @@ describe "Excon hook", :focus do
         chunks = []
 
         VCR.use_cassette('excon_streaming', :record => :once) do
-          Excon.get("http://127.0.0.1:#{VCR::SinatraApp.port}/foo") do |chunk, remaining_bytes, total_bytes|
+          Excon.get("http://localhost:#{VCR::SinatraApp.port}/foo") do |chunk, remaining_bytes, total_bytes|
             chunks << chunk
           end
         end
@@ -64,7 +64,7 @@ describe "Excon hook", :focus do
       end
 
       expect {
-        Excon.get("http://127.0.0.1:#{VCR::SinatraApp.port}/not_found", :expects => 200)
+        Excon.get("http://localhost:#{VCR::SinatraApp.port}/not_found", :expects => 200)
       }.to raise_error(Excon::Errors::Error)
     end
 

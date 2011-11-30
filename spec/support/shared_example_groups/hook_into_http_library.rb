@@ -31,7 +31,7 @@ shared_examples_for "a hook into an HTTP library" do |library_hook_name, library
       describe "making an HTTP request that responds with #{header_count} Set-Cookie header(s)" do
         define_method :get_set_cookie_header do
           VCR.use_cassette('header_test', :record => :once) do
-            get_header 'Set-Cookie', make_http_request(:get, "http://127.0.0.1:#{VCR::SinatraApp.port}/set-cookie-headers/#{header_count}")
+            get_header 'Set-Cookie', make_http_request(:get, "http://localhost:#{VCR::SinatraApp.port}/set-cookie-headers/#{header_count}")
           end
         end
 
@@ -65,7 +65,7 @@ shared_examples_for "a hook into an HTTP library" do |library_hook_name, library
       describe "a request to a URL #{description}" do
         define_method :get_body do
           VCR.use_cassette('record_and_playback', :record => :once) do
-            get_body_string make_http_request(:get, "http://127.0.0.1:#{VCR::SinatraApp.port}/record-and-playback?#{query}")
+            get_body_string make_http_request(:get, "http://localhost:#{VCR::SinatraApp.port}/record-and-playback?#{query}")
           end
         end
 
@@ -126,7 +126,7 @@ shared_examples_for "a hook into an HTTP library" do |library_hook_name, library
           VCR.library_hooks.stub(:disabled?) { |lib_name| lib_name != library_hook_name }
         end
 
-        let(:request_url) { "http://127.0.0.1:#{VCR::SinatraApp.port}/foo" }
+        let(:request_url) { "http://localhost:#{VCR::SinatraApp.port}/foo" }
 
         it 'yields the request to the block' do
           yielded_request = nil
@@ -341,7 +341,7 @@ shared_examples_for "a hook into an HTTP library" do |library_hook_name, library
     end
 
     def self.test_real_http_request(http_allowed, *other)
-      let(:url) { "http://127.0.0.1:#{VCR::SinatraApp.port}/foo" }
+      let(:url) { "http://localhost:#{VCR::SinatraApp.port}/foo" }
 
       if http_allowed
 
