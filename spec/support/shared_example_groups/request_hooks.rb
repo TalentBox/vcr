@@ -1,5 +1,5 @@
 shared_examples_for "request hooks" do |library_hook_name|
-  let(:request_url) { "http://127.0.0.1:#{VCR::SinatraApp.port}/foo" }
+  let(:request_url) { "http://localhost:#{VCR::SinatraApp.port}/foo" }
 
   before(:each) do
     # ensure that all the other library hooks are disabled so that we don't
