@@ -1,6 +1,6 @@
 env: CUCUMBER_FORMAT=progress
 bundler_args: --without extras
-script: "cat /etc/hosts && echo && bundle exec rspec spec/vcr/library_hooks/excon_spec.rb --format progress --backtrace"
+script: "bundle exec rspec spec/vcr/library_hooks/excon_spec.rb --format progress --backtrace"
 rvm:
   - 1.8.7
   - 1.9.2
